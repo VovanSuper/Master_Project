@@ -1,0 +1,50 @@
+﻿<Window
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   mc:Ignorable="d" x:Class="M_P_4.MainWindow" WindowStyle="ThreeDBorderWindow"
+   Title="TML _ Transform!" Height="600" Width="900" Background="{StaticResource MainWindowBackgroudBrush}" >
+    <Window.Resources>
+        <Storyboard x:Key="startTMLbtnBlinker" AutoReverse="True" RepeatBehavior="3x">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="btnTML">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.7">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuinticEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource startTMLbtnBlinker}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid >
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="btnHover"/>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="348" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="250" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="56.2" />
+        </Grid.RowDefinitions>
+        <Canvas x:Name="Bg" Width="800" Background="{StaticResource ResourceKey=Layer_1}" Grid.ColumnSpan="3" Margin="0,0,84,0" Grid.RowSpan="2" d:LayoutOverrides="VerticalMargin" />
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Margin="0">
+            <Button x:Name="btnTransform" Margin="30,0,0,0" Content="Transform" Grid.Row="1" Template="{DynamicResource ButtonControlTemplate1}" Height="46" Width="89" />
+            <Button x:Name="clearBtn" Margin="40,0,0,0" Grid.Row="1" Grid.Column="1" Content="  Clear All" Template="{DynamicResource ButtonControlTemplate1}" Height="46" Width="89" />
+            <Button x:Name="btnTML" Margin="40,0,0,0" Content="     TML" Template="{DynamicResource ButtonControlTemplate1}" FontWeight="Bold" Height="46" Width="89" />
+        </StackPanel>
+        <ListBox x:Name="listBox1" HorizontalAlignment="Left" Margin="-142,6,0,14" Width="380" FontSize="18" Background="{x:Null}" Grid.Column="2" Visibility="Collapsed" />
+        <Button x:Name="exitBtn" Content="E x i t" FontSize="22" FontWeight="Bold" Foreground="#FF160D0C" Grid.Column="2" Grid.Row="1" HorizontalContentAlignment="Center" Height="44" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="232" Style="{DynamicResource closeRedButtonStyle}" Margin="0,0,12,5" />
+        <ListBox x:Name="listBox2" Style="{DynamicResource ListBoxStyle1}" FontSize="16" HorizontalAlignment="Center" Margin="10,10,0,0" VerticalAlignment="Top" Width="856" Grid.ColumnSpan="3" />
+    </Grid>
+</Window>
